@@ -24,7 +24,7 @@ public class Tracker {
         }
         return rsl;
     }
-    /*Метод public Item[] findAll() возвращает копию массива items без null элементов (без пустых ячеек).*/
+
     public Item[] findAll() {
         Item[] rsl = new Item[items.length];
         int size = 0;
@@ -39,9 +39,7 @@ public class Tracker {
         rsl = Arrays.copyOf(rsl, size);
         return rsl;
     }
-    /*Метод public Item[] findByName(String key) проверяет в цикле все элементы массива items, сравнивая name (используя метод getName класса Item)
-     с аргументом метода String key. Элементы, у которых совпадает name, копирует в результирующий массив и возвращает его.
-     Алгоритм этого метода аналогичен методу findAll.*/
+
     public Item[] findByName(String key) {
         Item[] rsl = new Item[items.length];
         int size = 0;
