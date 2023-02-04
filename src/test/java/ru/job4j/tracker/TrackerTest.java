@@ -59,8 +59,10 @@ public class TrackerTest {
         tracker.add(item);
         int id = item.getId();
         Item updateItem = new Item("Bug with description");
+        boolean result = tracker.replace(1, updateItem);
         tracker.replace(id, updateItem);
         assertThat(tracker.findById(id).getName()).isEqualTo("Bug with description");
+        assertThat(result).isTrue();
     }
 
     @Test
@@ -70,6 +72,26 @@ public class TrackerTest {
         tracker.add(item);
         Item updateItem = new Item("Bug with description");
         boolean result = tracker.replace(1000, updateItem);
+        assertThat(tracker.findById(item.getId()).getName()).isEqualTo("Bug");
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    public void whenDeleteItemIsSuccessful() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("Bug");
+        tracker.add(item);
+        int id = item.getId();
+        tracker.delete(id);
+        assertThat(tracker.findById(id)).isNull();
+    }
+
+    @Test
+    public void whenDeleteItemIsNotSuccessful() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("Bug");
+        tracker.add(item);
+        boolean result = tracker.delete(1000);
         assertThat(tracker.findById(item.getId()).getName()).isEqualTo("Bug");
         assertThat(result).isFalse();
     }
