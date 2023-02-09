@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class StartUI {
@@ -46,8 +47,19 @@ public class StartUI {
                 if (tracker.delete(id)) {
                     System.out.println("Заявка удалена успешно.");
                 } else {
-                    System.out.println("Ошибка удаления заявки.");
+                    System.out.println("Нет такой заявки");
                 }
+            } else if (select == 4) {
+                System.out.println("=== Find item by id ===");
+                System.out.print("Enter id: ");
+                int id = Integer.parseInt(scanner.nextLine());
+                Item item = tracker.findById(id);
+                if (item != null) {
+                    System.out.println(item);
+                } else {
+                    System.out.println("Заявка с введенным id: " + id + " не найдена.");
+                }
+
             } else if (select == 6) {
                 run = false;
             }
