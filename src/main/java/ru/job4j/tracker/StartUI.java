@@ -1,7 +1,5 @@
 package ru.job4j.tracker;
 
-import ru.job4j.io.Tracker;
-
 import java.util.Scanner;
 
 public class StartUI {
