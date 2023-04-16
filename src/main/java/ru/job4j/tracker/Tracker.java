@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Tracker {
     private final ArrayList<Item> items = new ArrayList<>();
     private int ids = 1;
-    //private int size = 0;
 
     public Item add(Item item) {
         item.setId(ids++);
