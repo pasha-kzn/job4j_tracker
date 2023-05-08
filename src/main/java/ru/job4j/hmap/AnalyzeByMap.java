@@ -34,8 +34,7 @@ public class AnalyzeByMap {
         Map<String, Integer> subjectScore = new LinkedHashMap<>();
         for (Pupil p : pupils) {
             for (Subject s : p.subjects()) {
-                var ss = subjectScore.get(s.name());
-                subjectScore.put(s.name(), ss == null ? s.score() : ss + s.score());
+                subjectScore.put(s.name(), subjectScore.getOrDefault(s.name(), 0) + s.score());
             }
         }
         for (Map.Entry<String, Integer> m : subjectScore.entrySet()) {
@@ -74,12 +73,7 @@ public class AnalyzeByMap {
         for (Map.Entry<String, Integer> m : subjectScore.entrySet()) {
             scoreBySubject.add(new Label(m.getKey(), m.getValue()));
         }
-        var bestSubject = scoreBySubject.get(0);
-        for (int i = 1; i < scoreBySubject.size(); i++) {
-            if (scoreBySubject.get(i).compareTo(bestSubject) > 0) {
-                bestSubject = scoreBySubject.get(i);
-            }
-        }
-        return bestSubject;
+        Collections.sort(scoreBySubject, Label::compareTo);
+        return scoreBySubject.get(scoreBySubject.size() - 1);
     }
 }
