@@ -10,7 +10,7 @@ public class Departments {
             String start = "";
             for (String el : value.split("/")) {
                 start += el;
-                tmp.add (start);
+                tmp.add(start);
                 start += "/";
             }
         }
@@ -22,9 +22,6 @@ public class Departments {
     }
 
     public static void sortDesc(List<String> orgs) {
-        //Set<String> tmp = new LinkedHashSet<>();
-
-        Collections.sort(orgs, new DepDescComp());
-
+        orgs.sort(new DepDescComp());
     }
 }
