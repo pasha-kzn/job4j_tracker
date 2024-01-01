@@ -1,7 +1,4 @@
-package ru.job4j;
-
-import ru.job4j.bank.Account;
-import ru.job4j.bank.User;
+package ru.job4j.bank;
 
 import java.util.ArrayList;
 import java.util.HashMap;
