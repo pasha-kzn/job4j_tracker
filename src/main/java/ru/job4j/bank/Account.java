@@ -32,14 +32,14 @@ public class Account {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Account account = (Account) o;
+        Account account = (Account) obj;
         return Objects.equals(requisite, account.requisite);
     }
 
