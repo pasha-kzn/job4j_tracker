@@ -1,7 +1,6 @@
 package ru.job4j.bank;
 
 import org.junit.jupiter.api.Test;
-import ru.job4j.BankService;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
