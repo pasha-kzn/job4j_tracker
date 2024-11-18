@@ -32,11 +32,9 @@ public class AnalyzeByMap {
     public static List<Label> averageScoreBySubject(List<Pupil> pupils) {
         List<Label> scoreBySubject = new ArrayList<>();
         Map<String, Integer> subjectScore = new LinkedHashMap<>();
-        for (Pupil p : pupils) {
-            for (Subject s : p.subjects()) {
-                subjectScore.put(s.name(), subjectScore.getOrDefault(s.name(), 0) + s.score());
-            }
-        }
+        pupils.forEach(p -> {
+            p.subjects().forEach(s -> subjectScore.merge(s.name(), s.score(), Integer::sum));
+        });
         for (Map.Entry<String, Integer> m : subjectScore.entrySet()) {
             scoreBySubject.add(new Label(m.getKey(), (float) m.getValue() / pupils.size()));
         }
@@ -64,12 +62,9 @@ public class AnalyzeByMap {
     public static Label bestSubject(List<Pupil> pupils) {
         List<Label> scoreBySubject = new ArrayList<>();
         Map<String, Integer> subjectScore = new LinkedHashMap<>();
-        for (Pupil p : pupils) {
-            for (Subject s : p.subjects()) {
-                var ss = subjectScore.get(s.name());
-                subjectScore.put(s.name(), ss == null ? s.score() : ss + s.score());
-            }
-        }
+        pupils.forEach(p -> {
+            p.subjects().forEach(s -> subjectScore.merge(s.name(), s.score(), Integer::sum));
+        });
         for (Map.Entry<String, Integer> m : subjectScore.entrySet()) {
             scoreBySubject.add(new Label(m.getKey(), m.getValue()));
         }
