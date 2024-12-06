@@ -19,16 +19,9 @@ public class College {
 
     public Optional<Subject> findBySubjectName(String account, String name) {
         Optional<Student> student = findByAccount(account);
-        if (student.isPresent()) {
-            var subject =  students.get(student.get()
-                    )
-                    .stream()
-                    .filter(s -> s.name().equals(name))
-                    .findFirst();
-            if (subject.isPresent()) {
-                return subject;
-            }
-        }
-        return Optional.empty();
+        return student.flatMap(value -> students.get(value)
+                .stream()
+                .filter(s -> s.name().equals(name))
+                .findFirst());
     }
 }
