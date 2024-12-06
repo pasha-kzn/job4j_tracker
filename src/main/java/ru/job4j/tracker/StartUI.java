@@ -1,5 +1,9 @@
 package ru.job4j.tracker;
 
+import ru.job4j.tracker.action.*;
+import ru.job4j.tracker.input.*;
+import ru.job4j.tracker.output.*;
+
 import java.util.List;
 
 public class StartUI {

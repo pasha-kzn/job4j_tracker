@@ -1,8 +1,10 @@
 package ru.job4j.tracker;
 
 import org.junit.jupiter.api.Test;
+import ru.job4j.tracker.action.*;
+import ru.job4j.tracker.input.*;
+import ru.job4j.tracker.output.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
