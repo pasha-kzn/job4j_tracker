@@ -5,21 +5,19 @@ public class SimpleStringEncoder {
         int counter = 1;
         char symbol = input.charAt(0);
         String result = "" + symbol;
-        for (int i = 1; i < input.length(); i++) {
-            char previosSymbol = input.charAt(i - 1);
-            char currentSymbol = input.charAt(i);
-            if (previosSymbol != currentSymbol) {
+        for (int i = 1; i < input.length(); i++) {;
+            if (input.charAt(i - 1) != input.charAt(i)) {
                 if (counter == 1) {
-                    result = result + currentSymbol;
+                    result = result + input.charAt(i);
                 } else {
-                    result = result + counter + currentSymbol;
+                    result = result + counter + input.charAt(i);
                 }
                 counter = 0;
             }
             counter++;
-            if (i == input.length() - 1 && counter != 1) {
-                result += counter;
-            }
+        }
+        if (counter != 1) {
+            result += counter;
         }
         return result;
     }
