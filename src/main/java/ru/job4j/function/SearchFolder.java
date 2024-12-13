@@ -14,4 +14,14 @@ public class SearchFolder {
         }
         return result;
     }
+
+    public static void main(String[] args) {
+        List<Folder> result = new ArrayList<>();
+        result.add(new Folder("One", 1000));
+        result.add(new Folder("Two", 2000));
+        result.forEach(f -> filter(result, string -> f.getName().contains("One")));
+
+        //Predicate<String> predicate = string -> string.isEmpty();
+        //BiPredicate<String, Integer> condition = (string, number) -> string.contains(number.toString());
+    }
 }
