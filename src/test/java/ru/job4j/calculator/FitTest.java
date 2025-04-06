@@ -11,7 +11,6 @@ class FitTest {
         assertThat(result).isEqualTo(100.05);
     }
 
-    // Тесты для метода manWeight
     @Test
     void manWeight_ShouldCalculateCorrectlyForNormalHeight() {
         double result = Fit.manWeight((short) 187);
@@ -24,7 +23,6 @@ class FitTest {
         assertThat(result).isEqualTo(0.0, withPrecision(0.01d));
     }
 
-    // Тесты для метода womanWeight
     @Test
     void womanWeight_ShouldCalculateCorrectlyForNormalHeight() {
         double result = Fit.womanWeight((short) 170);
