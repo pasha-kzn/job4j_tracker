@@ -6,37 +6,37 @@ import static org.assertj.core.api.Assertions.*;
 
 class FitTest {
     @Test
-    public void manWeight_ShouldCalculateCorrectly() {
+    public void manWeightShouldCalculateCorrectly() {
         double result = Fit.manWeight((short) 187);
         assertThat(result).isEqualTo(100.05);
     }
 
     @Test
-    void manWeight_ShouldCalculateCorrectlyForNormalHeight() {
+    void manWeightShouldCalculateCorrectlyForNormalHeight() {
         double result = Fit.manWeight((short) 187);
         assertThat(result).isEqualTo(100.05, withPrecision(0.01d));
     }
 
     @Test
-    void manWeight_ShouldCalculateZeroForBaseHeight() {
+    void manWeightShouldCalculateZeroForBaseHeight() {
         double result = Fit.manWeight((short) 100);
         assertThat(result).isEqualTo(0.0, withPrecision(0.01d));
     }
 
     @Test
-    void womanWeight_ShouldCalculateCorrectlyForNormalHeight() {
+    void womanWeightShouldCalculateCorrectlyForNormalHeight() {
         double result = Fit.womanWeight((short) 170);
         assertThat(result).isEqualTo(69.0, withPrecision(0.01d));
     }
 
     @Test
-    void womanWeight_ShouldCalculateZeroForBaseHeight() {
+    void womanWeightShouldCalculateZeroForBaseHeight() {
         double result = Fit.womanWeight((short) 110);
         assertThat(result).isEqualTo(0.0, withPrecision(0.01d));
     }
 
     @Test
-    void womanWeight_ShouldHandleMaxShortValue() {
+    void womanWeightShouldHandleMaxShortValue() {
         double result = Fit.womanWeight(Short.MAX_VALUE);
         assertThat(result > 0).isTrue();
     }
