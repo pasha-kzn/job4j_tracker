@@ -14,7 +14,6 @@ public class Interview {
     // if - else
     // computeIfPresent() / putIfAbsent()
     // merge
-    
 
     public static Map<Integer, Long> countNumbersFour(List<Integer> number) {
         return number.stream().collect(Collectors.toMap(element -> element,
