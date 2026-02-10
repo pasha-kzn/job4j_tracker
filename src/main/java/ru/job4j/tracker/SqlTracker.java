@@ -109,13 +109,9 @@ public class SqlTracker implements Store {
         List<Item> items = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM items")) {
             ResultSet resultSet = statement.executeQuery();
-                while (resultSet.next()) {
-                    items.add(new Item(
-                            resultSet.getInt("id"),
-                            resultSet.getString("name"),
-                            resultSet.getTimestamp("created").toLocalDateTime()
-                    ));
-                }
+            while (resultSet.next()) {
+                items.add(getNewItem(resultSet));
+            }
         } catch (SQLException e) {
             throw new RuntimeException("Не удалось получить все заявки", e);
         }
@@ -129,11 +125,7 @@ public class SqlTracker implements Store {
             statement.setString(1, key);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                items.add(new Item(
-                        resultSet.getInt("id"),
-                        resultSet.getString("name"),
-                        resultSet.getTimestamp("created").toLocalDateTime()
-                ));
+                items.add(getNewItem(resultSet));
             }
         } catch (SQLException e) {
             throw new RuntimeException(format("Не удалось удалить запись c name = '%s'", key), e);
@@ -148,14 +140,18 @@ public class SqlTracker implements Store {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                item = new Item(resultSet.getInt("id"),
-                        resultSet.getString("name"),
-                        resultSet.getTimestamp("created").toLocalDateTime());
+                item = getNewItem(resultSet);
             }
         } catch (SQLException e) {
             throw new RuntimeException(format("Не удалось удалить запись c id = %s", id), e);
         }
         return item;
+    }
+
+    private static Item getNewItem(ResultSet resultSet) throws SQLException {
+        return new Item(resultSet.getInt("id"),
+                resultSet.getString("name"),
+                resultSet.getTimestamp("created").toLocalDateTime());
     }
 
     public static void main(String[] args) {
