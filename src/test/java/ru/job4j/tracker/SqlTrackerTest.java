@@ -138,6 +138,17 @@ class SqlTrackerTest {
     }
 
     @Test
+    public void whenTableIsNotEmptyByDeleteItem() {
+        Store tracker = new SqlTracker(connection);
+        Item itemFirst = new Item("First");
+        Item itemSecond = new Item("Second");
+        tracker.add(itemFirst);
+        tracker.add(itemSecond);
+        tracker.delete(itemFirst.getId());
+        assertThat(tracker.findById(itemSecond.getId())).isNotNull();
+    }
+
+    @Test
     public void whenDeleteItemIsNotSuccessful() {
         Store tracker = new SqlTracker(connection);
         Item item = new Item("Bug");
